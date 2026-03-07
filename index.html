@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO Meta Tags -->
+  <title>Pet's Corner - متجر حيوانات الجزائر | قطط كلاب طيور أسماك</title>
+  <meta name="description" content="Pet's Corner - أفضل متجر لحيوانات الأليفة في الجزائر. تسوق حيوانات أليفة، أغذية، وإكسسوارات بأفضل الأسعار. توصيل لجميع ولايات الجزائر.">
+  <meta name="keywords" content="pet shop algeria, حيوانات أليفة الجزائر, قطط للبيع, كلاب للبيع, طيور, أسماك, pet food, accessories, متجر حيوانات">
+  <meta name="author" content="Pet's Corner">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://petscorner.dz/">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Pet's Corner - متجر حيوانات الجزائر">
+  <meta property="og:description" content="أفضل متجر لحيوانات الأليفة في الجزائر - حيوانات، غذاء، وإكسسوارات">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://petscorner.dz/">
+  
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='16' fill='%23FCCF1B'/><text y='22' x='16' text-anchor='middle' font-size='20' font-weight='bold' fill='%231a1a2e' font-family='sans-serif'>P</text></svg>">
+</head>
+
+<body>
+
+<!-- ===== PAGE LOADER ===== -->
+<div id="page-loader" role="status" aria-label="جاري التحميل">
+  <div class="loader-inner">
+    <span class="material-icons loader-paw">pets</span>
+    <div class="loader-text">Pet's Corner</div>
+  </div>
+</div>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar" role="navigation" aria-label="القائمة الرئيسية">
+  <div class="container">
+    
+    <!-- Logo -->
+    <a href="index.html" class="nav-logo" aria-label="الصفحة الرئيسية">
+      <div class="logo-icon"><span class="material-icons" style="font-size:26px">pets</span></div>
+      <div class="logo-text">
+        <span class="logo-name">Pet's Corner</span>
+        <span class="logo-tagline">متجر حيوانات الأليفة</span>
+      </div>
+    </a>
+
+    <!-- Search Bar -->
+    <div class="nav-search" role="search">
+      <input 
+        type="search" 
+        id="search-input" 
+        placeholder="ابحث عن حيوان، منتج، أو فئة..." 
+        autocomplete="off"
+        aria-label="البحث في المنتجات">
+      <span class="material-icons search-icon">search</span>
+      <div class="search-results" id="search-results" role="listbox" aria-label="نتائج البحث"></div>
+    </div>
+
+    <!-- Nav Actions -->
+    <div class="nav-actions">
+      <!-- Mobile Search Toggle -->
+      <button class="nav-btn" id="search-toggle" aria-label="بحث" style="display:none">
+        <span class="material-icons">search</span>
+      </button>
+      <!-- Contact -->
+      <button class="nav-btn" id="contact-btn" aria-label="اتصل بنا">
+        <span class="material-icons">headset_mic</span>
+      </button>
+      <!-- Cart -->
+      <button class="nav-btn" id="cart-btn" aria-label="سلة التسوق">
+        <span class="material-icons">shopping_bag</span>
+        <span class="cart-count hidden" id="cart-count">0</span>
+      </button>
+    </div>
+
+  </div>
+</nav>
+
+<!-- ===== MAIN ===== -->
+<main>
+
+  <!-- ===== HERO SECTION ===== -->
+  <section class="hero" aria-label="الرئيسية">
+    
+    <!-- Hero Header -->
+    <div class="hero-header">
+      <h1>مرحباً بك في <span>Pet's Corner</span></h1>
+      <p>اكتشف أفضل الحيوانات الأليفة، الأغذية والإكسسوارات بأسعار لا تقاوم</p>
+    </div>
+
+    <!-- Animals Scroll -->
+    <div class="animals-section">
+      <div class="section-label">اختر نوع الحيوان</div>
+      <div class="animals-scroll-container" role="region" aria-label="قائمة الحيوانات">
+        <div class="animals-track" id="animals-track">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Branch Boxes -->
+    <div class="branches-section" role="region" aria-label="فئات المنتجات">
+      <div class="branches-grid">
+        
+        <div class="branch-box" data-branch="animals" role="button" tabindex="0" aria-label="تصفية الحيوانات">
+          <img src="https://images.unsplash.com/photo-1444491741275-3747c53c99b4?w=600&q=80" alt="حيوانات" loading="lazy">
+          <div class="branch-content">
+            <span class="branch-icon"><span class="material-icons">pets</span></span>
+            <span class="branch-name">الحيوانات</span>
+            <span class="branch-count">0 منتج</span>
+          </div>
+        </div>
+
+        <div class="branch-box" data-branch="food" role="button" tabindex="0" aria-label="تصفية الأغذية">
+          <img src="https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=600&q=80" alt="غذاء" loading="lazy">
+          <div class="branch-content">
+            <span class="branch-icon"><span class="material-icons">restaurant</span></span>
+            <span class="branch-name">الأغذية</span>
+            <span class="branch-count">0 منتج</span>
+          </div>
+        </div>
+
+        <div class="branch-box" data-branch="accessories" role="button" tabindex="0" aria-label="تصفية الإكسسوارات">
+          <img src="https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=600&q=80" alt="إكسسوارات" loading="lazy">
+          <div class="branch-content">
+            <span class="branch-icon"><span class="material-icons">style</span></span>
+            <span class="branch-name">الإكسسوارات</span>
+            <span class="branch-count">0 منتج</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ===== PROMO BANNER ===== -->
+  <div class="promo-banner">
+      <h2><span class="material-icons" style="font-size:28px;vertical-align:middle;margin-left:8px">local_shipping</span> توصيل لجميع ولايات الجزائر</h2>
+    <p>أسعار خاصة على الشحن • ضمان جودة المنتجات • دعم عملاء 7/7</p>
+  </div>
+
+  <!-- ===== FILTER BAR ===== -->
+  <div class="filter-bar" role="region" aria-label="تصفية المنتجات">
+    <div class="container">
+      <span class="filter-label">تصفية:</span>
+      <div class="filter-chips" role="group" aria-label="فئات التصفية">
+        <button class="filter-chip active" data-branch="all" aria-pressed="true">الكل</button>
+        <button class="filter-chip" data-branch="animals" aria-pressed="false"><span class="material-icons" style="font-size:16px;vertical-align:middle;margin-left:4px">pets</span> حيوانات</button>
+        <button class="filter-chip" data-branch="food" aria-pressed="false"><span class="material-icons" style="font-size:16px;vertical-align:middle;margin-left:4px">restaurant</span> أغذية</button>
+        <button class="filter-chip" data-branch="accessories" aria-pressed="false"><span class="material-icons" style="font-size:16px;vertical-align:middle;margin-left:4px">style</span> إكسسوارات</button>
+      </div>
+      <span class="results-count" id="results-count" aria-live="polite">0 منتج</span>
+    </div>
+  </div>
+
+  <!-- ===== PRODUCTS SECTION ===== -->
+  <section class="products-section" id="products" aria-label="المنتجات">
+    <div class="container">
+      
+      <div class="section-header fade-in-up">
+        <h2 class="section-title">منتجاتنا المميزة</h2>
+        <p class="section-subtitle">اكتشف تشكيلتنا الواسعة من الحيوانات الأليفة والمستلزماتها</p>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="products-grid" id="products-grid" role="list" aria-label="قائمة المنتجات">
+        <!-- Skeleton loading -->
+        <div class="product-card">
+          <div class="card-img-wrapper skeleton" style="height:200px"></div>
+          <div class="card-body">
+            <div class="skeleton" style="height:14px;margin-bottom:8px;width:60%"></div>
+            <div class="skeleton" style="height:18px;margin-bottom:8px"></div>
+            <div class="skeleton" style="height:24px;width:40%"></div>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="card-img-wrapper skeleton" style="height:200px"></div>
+          <div class="card-body">
+            <div class="skeleton" style="height:14px;margin-bottom:8px;width:60%"></div>
+            <div class="skeleton" style="height:18px;margin-bottom:8px"></div>
+            <div class="skeleton" style="height:24px;width:40%"></div>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="card-img-wrapper skeleton" style="height:200px"></div>
+          <div class="card-body">
+            <div class="skeleton" style="height:14px;margin-bottom:8px;width:60%"></div>
+            <div class="skeleton" style="height:18px;margin-bottom:8px"></div>
+            <div class="skeleton" style="height:24px;width:40%"></div>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="card-img-wrapper skeleton" style="height:200px"></div>
+          <div class="card-body">
+            <div class="skeleton" style="height:14px;margin-bottom:8px;width:60%"></div>
+            <div class="skeleton" style="height:18px;margin-bottom:8px"></div>
+            <div class="skeleton" style="height:24px;width:40%"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pagination -->
+      <div class="pagination" id="pagination" role="navigation" aria-label="صفحات المنتجات"></div>
+
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer id="footer" role="contentinfo">
+
+  <!-- Google Map -->
+  <iframe 
+    class="footer-map"
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d101600.22928286!2d3.0588573!3d36.7357462!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x128fb26977ea659f%3A0x3a9d88e4ae0a73ea!2sAlgiers%2C%20Algeria!5e0!3m2!1sen!2sdz!4v1700000000000!5m2!1sen!2sdz"
+    title="موقع المتجر على الخريطة"
+    allowfullscreen
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+
+  <div class="footer-content">
+    <div class="container">
+      
+      <div class="footer-grid">
+        
+        <!-- Brand Column -->
+        <div class="footer-brand">
+          <div class="logo-text">
+            <span class="logo-name" style="color:white;font-size:22px"><span class="material-icons" style="font-size:22px;vertical-align:middle;margin-left:6px">pets</span> Pet's Corner</span>
+            <span class="logo-tagline">متجر حيوانات الأليفة</span>
+          </div>
+          <p>نحن متجر متخصص في حيوانات الأليفة وكل ما تحتاجه من غذاء وإكسسوارات. نهدف إلى توفير أفضل الخدمات لأصحاب الحيوانات في الجزائر.</p>
+          
+          <!-- Social Links -->
+          <div class="social-links">
+            <a href="#" class="social-link social-fb" aria-label="فيسبوك">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="#" class="social-link social-ig" aria-label="إنستغرام">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path fill="none" stroke="white" stroke-width="2" d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line fill="none" stroke="white" stroke-width="2" x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="#" class="social-link social-tk" aria-label="تيك توك">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.97a8.16 8.16 0 004.77 1.52V7.04a4.85 4.85 0 01-1-.35z"/></svg>
+            </a>
+            <a href="#" class="social-link social-sc" aria-label="سناب شات">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5.27 13.27c-.2.2-1.03.45-1.67.59-.1.02-.19.09-.23.18-.1.24-.28.77-.57.77-.22 0-.5-.12-.99-.22-.52-.11-1.03-.15-1.81-.15s-1.29.04-1.81.15c-.49.1-.77.22-.99.22-.29 0-.47-.53-.57-.77-.04-.09-.13-.16-.23-.18-.64-.14-1.47-.39-1.67-.59a.25.25 0 01.1-.42c.18-.04.35-.09.49-.14.51-.18.78-.38.9-.62.05-.1.06-.21.03-.31-.22-.71-.36-1.5-.36-2.17 0-1.99 1.31-3.21 3.11-3.21 1.8 0 3.11 1.22 3.11 3.21 0 .67-.14 1.46-.36 2.17a.37.37 0 00.03.31c.12.24.39.44.9.62.14.05.31.1.49.14a.25.25 0 01.1.42z"/></svg>
+            </a>
+            <a href="https://wa.me/213XXXXXXXXX" class="social-link social-wa" aria-label="واتساب">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-col">
+          <h3>روابط سريعة</h3>
+          <ul class="footer-links">
+            <li><a href="index.html">الرئيسية</a></li>
+            <li><a href="index.html?branch=animals">الحيوانات</a></li>
+            <li><a href="index.html?branch=food">الأغذية</a></li>
+            <li><a href="index.html?branch=accessories">الإكسسوارات</a></li>
+            <li><a href="cart.html">سلة التسوق</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div class="footer-col" id="contact-section">
+          <h3>تواصل معنا</h3>
+          <div class="footer-contact-item">
+            <span class="material-icons">location_on</span>
+            <span>الجزائر العاصمة، الجزائر</span>
+          </div>
+          <div class="footer-contact-item">
+            <span class="material-icons">phone</span>
+            <span>+213 XX XX XX XX</span>
+          </div>
+          <div class="footer-contact-item">
+            <span class="material-icons">email</span>
+            <span>contact@petscorner.dz</span>
+          </div>
+          <div class="footer-contact-item">
+            <span class="material-icons">schedule</span>
+            <span>السبت - الخميس: 9ص - 9م</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer-bottom">
+        <p>جميع الحقوق محفوظة لمتجر Pet's Corner 2026 &copy;</p>
+      </div>
+
+    </div>
+  </div>
+
+</footer>
+
+<!-- ===== SCROLL TO TOP ===== -->
+<button class="scroll-top" id="scroll-top" aria-label="العودة للأعلى">
+  <span class="material-icons">expand_less</span>
+</button>
+
+<!-- ===== SCRIPTS ===== -->
+<script src="js/cart.js"></script>
+<script src="js/app.js"></script>
+
+<script>
+  // Handle URL parameters for filtering
+  (function() {
+    const params = new URLSearchParams(window.location.search);
+    const branch = params.get('branch');
+    const animal = params.get('animal');
+    
+    if (branch || animal) {
+      document.addEventListener('DOMContentLoaded', () => {
+        setTimeout(() => {
+          if (branch) {
+            const branchBox = document.querySelector(`.branch-box[data-branch="${branch}"]`);
+            if (branchBox) branchBox.click();
+          }
+          if (animal) {
+            const animalBtn = document.querySelector(`.animal-btn[data-animal="${animal}"]`);
+            if (animalBtn) animalBtn.click();
+          }
+        }, 800);
+      });
+    }
+  })();
+
+  // Show search toggle on mobile
+  if (window.innerWidth <= 768) {
+    document.getElementById('search-toggle').style.display = 'flex';
+  }
+</script>
+
+</body>
+</html>

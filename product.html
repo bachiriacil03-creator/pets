@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تفاصيل المنتج - Pet's Corner</title>
+  <meta name="description" content="تفاصيل المنتج في متجر Pet's Corner لحيوانات الأليفة">
+  <meta name="robots" content="index, follow">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='16' fill='%23FCCF1B'/><text y='22' x='16' text-anchor='middle' font-size='20' font-weight='bold' fill='%231a1a2e' font-family='sans-serif'>P</text></svg>">
+</head>
+
+<body>
+
+<!-- ===== PAGE LOADER ===== -->
+<div id="page-loader" role="status" aria-label="جاري التحميل">
+  <div class="loader-inner">
+    <span class="material-icons loader-paw">pets</span>
+    <div class="loader-text">Pet's Corner</div>
+  </div>
+</div>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar" role="navigation" aria-label="القائمة الرئيسية">
+  <div class="container">
+    <a href="index.html" class="nav-logo" aria-label="الصفحة الرئيسية">
+      <div class="logo-icon"><span class="material-icons" style="font-size:26px">pets</span></div>
+      <div class="logo-text">
+        <span class="logo-name">Pet's Corner</span>
+        <span class="logo-tagline">متجر حيوانات الأليفة</span>
+      </div>
+    </a>
+    <div class="nav-search" role="search">
+      <input type="search" id="search-input" placeholder="ابحث عن منتج..." autocomplete="off" aria-label="البحث">
+      <span class="material-icons search-icon">search</span>
+      <div class="search-results" id="search-results"></div>
+    </div>
+    <div class="nav-actions">
+      <button class="nav-btn" id="search-toggle" aria-label="بحث" style="display:none">
+        <span class="material-icons">search</span>
+      </button>
+      <button class="nav-btn" id="contact-btn" aria-label="اتصل بنا">
+        <span class="material-icons">headset_mic</span>
+      </button>
+      <button class="nav-btn" id="cart-btn" aria-label="سلة التسوق">
+        <span class="material-icons">shopping_bag</span>
+        <span class="cart-count hidden" id="cart-count">0</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== MAIN ===== -->
+<main>
+  <div class="product-details-page">
+    <div class="container">
+      
+      <!-- Breadcrumb -->
+      <nav class="breadcrumb" aria-label="مسار التنقل" id="breadcrumb">
+        <a href="index.html">الرئيسية</a>
+        <span class="sep material-icons" style="font-size:16px">chevron_left</span>
+        <a href="index.html">المنتجات</a>
+        <span class="sep material-icons" style="font-size:16px">chevron_left</span>
+        <span id="breadcrumb-name">...</span>
+      </nav>
+
+      <!-- Product Layout -->
+      <div class="product-layout" id="product-content">
+        <!-- Loaded by JS -->
+        <div style="grid-column:1/-1;text-align:center;padding:80px 20px;">
+          <span class="material-icons loader-paw" style="font-size:40px;display:block;margin-bottom:16px">pets</span>
+          <p style="color:var(--text-muted)">جاري تحميل المنتج...</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Similar Products -->
+  <section class="similar-products" id="similar-section" style="display:none">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">منتجات مشابهة</h2>
+        <p class="section-subtitle">قد يعجبك أيضاً</p>
+      </div>
+      <div class="products-grid" id="similar-grid"></div>
+    </div>
+  </section>
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer id="footer" role="contentinfo">
+  <div class="footer-content">
+    <div class="container">
+      <div class="footer-bottom" style="border-top:none;padding:30px 0">
+        <p>جميع الحقوق محفوظة لمتجر Pet's Corner 2026 &copy;</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button class="scroll-top" id="scroll-top" aria-label="العودة للأعلى">
+  <span class="material-icons">expand_less</span>
+</button>
+
+<script src="js/cart.js"></script>
+<script>
+'use strict';
+
+let allProducts = [];
+let currentProduct = null;
+
+// ===== Init =====
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    const loader = document.getElementById('page-loader');
+    if (loader) loader.classList.add('hidden');
+  }, 600);
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  initNavbar();
+  loadProduct();
+  initScrollTop();
+});
+
+function initNavbar() {
+  const navbar = document.querySelector('.navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 50);
+  }, { passive: true });
+
+  const contactBtn = document.getElementById('contact-btn');
+  if (contactBtn) contactBtn.addEventListener('click', () => {
+    document.getElementById('footer')?.scrollIntoView({ behavior: 'smooth' });
+  });
+
+  const cartBtn = document.getElementById('cart-btn');
+  if (cartBtn) cartBtn.addEventListener('click', () => window.location.href = 'cart.html');
+
+  if (window.innerWidth <= 768) {
+    const searchToggle = document.getElementById('search-toggle');
+    if (searchToggle) searchToggle.style.display = 'flex';
+    searchToggle?.addEventListener('click', () => {
+      document.querySelector('.nav-search')?.classList.toggle('mobile-show');
+    });
+  }
+
+  Cart.updateCartUI();
+}
+
+async function loadProduct() {
+  const params = new URLSearchParams(window.location.search);
+  const productId = params.get('id');
+
+  if (!productId) {
+    showNotFound();
+    return;
+  }
+
+  try {
+    const res = await fetch('data/products.json');
+    allProducts = await res.json();
+
+    currentProduct = allProducts.find(p => p.id === productId);
+    if (!currentProduct) {
+      showNotFound();
+      return;
+    }
+
+    renderProduct(currentProduct);
+    renderSimilar(currentProduct);
+    updateMeta(currentProduct);
+  } catch (err) {
+    console.error(err);
+    showNotFound();
+  }
+}
+
+function isNew(dateStr) {
+  if (!dateStr) return false;
+  const diff = (new Date() - new Date(dateStr)) / (1000 * 60 * 60 * 24);
+  return diff <= 10;
+}
+
+function hasDiscount(p) {
+  return p.promotion_price && p.promotion_price !== '' && p.promotion_price < p.price;
+}
+
+function formatPrice(price) {
+  return Number(price).toLocaleString('ar-DZ');
+}
+
+function calcDiscount(orig, promo) {
+  return Math.round(((orig - promo) / orig) * 100);
+}
+
+function renderProduct(p) {
+  document.getElementById('breadcrumb-name').textContent = p.name;
+  document.title = `${p.name} - Pet's Corner`;
+
+  const discount = hasDiscount(p);
+  const fresh = isNew(p.date);
+  const finalPrice = discount ? p.promotion_price : p.price;
+  const inCart = Cart.has(p.id);
+
+  const branchLabels = { animals: 'حيوانات', food: 'غذاء', accessories: 'إكسسوارات' };
+  const animalLabels = { cat: 'قطط', dog: 'كلاب', bird: 'طيور', fish: 'أسماك', rabbit: 'أرانب', hamster: 'هامستر' };
+
+  let labelHtml = '';
+  if (discount) {
+    labelHtml = `<span class="product-badge label-discount">خصم ${calcDiscount(p.price, p.promotion_price)}%</span>`;
+  } else if (fresh) {
+    labelHtml = `<span class="product-badge label-new"><span class="material-icons" style="font-size:14px;vertical-align:middle">fiber_new</span> جديد</span>`;
+  }
+
+  const priceHtml = discount
+    ? `<div class="product-price-block">
+        <span class="product-price discounted">${formatPrice(p.promotion_price)} <small style="font-size:16px">دج</small></span>
+        <span class="product-original-price">${formatPrice(p.price)} دج</span>
+        <span class="discount-badge">-${calcDiscount(p.price, p.promotion_price)}%</span>
+      </div>`
+    : `<div class="product-price-block">
+        <span class="product-price">${formatPrice(p.price)} <small style="font-size:16px">دج</small></span>
+      </div>`;
+
+  document.getElementById('product-content').innerHTML = `
+    <!-- Gallery -->
+    <div class="product-gallery">
+      <div class="product-main-img">
+        <img src="${p.image}" alt="${p.name}" loading="lazy">
+        ${labelHtml}
+      </div>
+    </div>
+
+    <!-- Info -->
+    <div class="product-info">
+      <div class="product-meta">
+        <span class="meta-tag">${branchLabels[p.branch] || p.branch}</span>
+        <span class="meta-tag">${animalLabels[p.animal] || p.animal}</span>
+        ${fresh ? '<span class="meta-tag" style="background:var(--success);color:white">وصل حديثاً</span>' : ''}
+      </div>
+
+      <h1 class="product-name">${p.name}</h1>
+
+      ${priceHtml}
+
+      <div class="product-desc">
+        <p>${p.description}</p>
+      </div>
+
+      <div class="product-actions">
+        <button class="btn-add-to-cart-lg ${inCart ? 'added' : ''}" id="add-to-cart-main" onclick="addToCartMain()">
+          <span class="material-icons">${inCart ? 'check' : 'shopping_cart'}</span>
+          ${inCart ? 'تمت الإضافة' : 'أضف إلى السلة'}
+        </button>
+        <a href="cart.html" class="btn-dark" style="text-align:center;display:flex;align-items:center;justify-content:center;gap:8px;border-radius:10px;padding:14px">
+          <span class="material-icons">shopping_bag</span>
+          عرض السلة
+        </a>
+      </div>
+
+      <!-- Product Details Table -->
+      <div style="background:var(--light);border-radius:12px;padding:16px;margin-top:8px">
+        <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--gray-light);font-size:14px">
+          <span style="color:var(--text-muted)">الفئة</span>
+          <span style="font-weight:700">${branchLabels[p.branch] || p.branch}</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--gray-light);font-size:14px">
+          <span style="color:var(--text-muted)">نوع الحيوان</span>
+          <span style="font-weight:700">${animalLabels[p.animal] || p.animal}</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;padding:8px 0;font-size:14px">
+          <span style="color:var(--text-muted)">حالة المنتج</span>
+          <span style="font-weight:700;color:var(--success)"><span class="material-icons" style="font-size:16px;vertical-align:middle">check_circle</span> متوفر</span>
+        </div>
+      </div>
+
+    </div>
+  `;
+}
+
+function addToCartMain() {
+  if (!currentProduct) return;
+  Cart.add(currentProduct);
+
+  const btn = document.getElementById('add-to-cart-main');
+  if (btn) {
+    btn.classList.add('added');
+    btn.innerHTML = '<span class="material-icons">check</span> تمت الإضافة';
+  }
+
+  showToast('تمت إضافة المنتج إلى سلة التسوق', 'success');
+}
+
+function renderSimilar(product) {
+  const similar = allProducts.filter(p => 
+    p.id !== product.id && (p.animal === product.animal || p.branch === product.branch)
+  ).slice(0, 4);
+
+  if (similar.length === 0) return;
+
+  document.getElementById('similar-section').style.display = 'block';
+  document.getElementById('similar-grid').innerHTML = similar.map(p => {
+    const discount = hasDiscount(p);
+    const priceHtml = discount
+      ? `<span class="price-original">${formatPrice(p.price)} دج</span>
+         <span class="price-current discounted">${formatPrice(p.promotion_price)} دج</span>`
+      : `<span class="price-current">${formatPrice(p.price)} دج</span>`;
+
+    return `
+      <div class="product-card">
+        <div class="card-img-wrapper">
+          <img src="${p.image}" alt="${p.name}" loading="lazy">
+          ${discount ? '<span class="card-label label-discount">خصم</span>' : ''}
+        </div>
+        <div class="card-body">
+          <h3 class="card-name">${p.name}</h3>
+          <div class="card-price">${priceHtml}</div>
+        </div>
+        <div class="card-actions">
+          <button class="btn-add-cart" onclick="addSimilarToCart('${p.id}')">
+            <span class="material-icons" style="font-size:18px">shopping_cart</span>
+            أضف للسلة
+          </button>
+          <button class="btn-details" onclick="window.location.href='product.html?id=${p.id}'">
+            <span class="material-icons">visibility</span>
+          </button>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+function addSimilarToCart(id) {
+  const product = allProducts.find(p => p.id === id);
+  if (product) {
+    Cart.add(product);
+    showToast('تمت إضافة المنتج إلى سلة التسوق', 'success');
+  }
+}
+
+function updateMeta(p) {
+  document.querySelector('meta[name="description"]').content = p.description;
+}
+
+function showNotFound() {
+  document.getElementById('product-content').innerHTML = `
+    <div class="not-found" style="grid-column:1/-1">
+      <h1>404</h1>
+      <p style="font-size:18px;color:var(--text-muted);margin-bottom:24px">المنتج غير موجود</p>
+      <a href="index.html" class="btn-primary">العودة للمتجر</a>
+    </div>`;
+}
+
+function showToast(msg, type = '') {
+  let toast = document.getElementById('toast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'toast';
+    toast.className = 'toast';
+    document.body.appendChild(toast);
+  }
+  toast.textContent = msg;
+  toast.className = `toast ${type} show`;
+  clearTimeout(toast._timer);
+  toast._timer = setTimeout(() => toast.classList.remove('show'), 3000);
+}
+
+function initScrollTop() {
+  const btn = document.getElementById('scroll-top');
+  if (!btn) return;
+  window.addEventListener('scroll', () => {
+    btn.classList.toggle('show', window.scrollY > 400);
+  }, { passive: true });
+  btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+}
+
+// Search
+const searchInput = document.getElementById('search-input');
+const searchResults = document.getElementById('search-results');
+if (searchInput) {
+  let timer;
+  searchInput.addEventListener('input', (e) => {
+    clearTimeout(timer);
+    const q = e.target.value.trim().toLowerCase();
+    timer = setTimeout(() => {
+      if (!q) { searchResults.classList.remove('show'); return; }
+      const results = allProducts.filter(p =>
+        p.name.toLowerCase().includes(q) || p.animal.includes(q) || p.branch.includes(q)
+      ).slice(0, 6);
+      if (results.length === 0) {
+        searchResults.innerHTML = '<p class="search-empty">لا توجد نتائج</p>';
+      } else {
+        searchResults.innerHTML = results.map(p => `
+          <div class="search-result-item" onclick="window.location.href='product.html?id=${p.id}'">
+            <img src="${p.image}" alt="${p.name}" loading="lazy">
+            <div class="search-result-info">
+              <div class="name">${p.name}</div>
+              <div class="price">${formatPrice(p.promotion_price || p.price)} دج</div>
+            </div>
+          </div>`).join('');
+      }
+      searchResults.classList.add('show');
+    }, 200);
+  });
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.nav-search')) searchResults.classList.remove('show');
+  });
+}
+</script>
+
+</body>
+</html>

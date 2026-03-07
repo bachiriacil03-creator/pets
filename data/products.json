@@ -1,0 +1,222 @@
+[
+  {
+    "id": "p001",
+    "image": "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=600&q=80",
+    "name": "قطة فارسية أصيلة",
+    "price": 15000,
+    "promotion_price": 12000,
+    "description": "قطة فارسية من سلالة أصيلة، عمرها 3 أشهر، ملقحة وبصحة ممتازة. لونها أبيض ناصع وشعرها طويل وكثيف. تم تربيتها في بيئة منزلية نظيفة مع جميع التطعيمات اللازمة.",
+    "date": "2025-05-25",
+    "animal": "cat",
+    "branch": "animals"
+  },
+  {
+    "id": "p002",
+    "image": "https://images.unsplash.com/photo-1533743983669-94fa5c4338ec?w=600&q=80",
+    "name": "كلب هاسكي سيبيري",
+    "price": 25000,
+    "promotion_price": "",
+    "description": "كلب هاسكي سيبيري بالغ عمره 4 أشهر، أزرق العيون، صحة ممتازة وشخصية رائعة. لقاحاته كاملة وتم تسجيله رسميًا.",
+    "date": "2025-05-10",
+    "animal": "dog",
+    "branch": "animals"
+  },
+  {
+    "id": "p003",
+    "image": "https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=600&q=80",
+    "name": "ببغاء أفريقي رمادي",
+    "price": 35000,
+    "promotion_price": 30000,
+    "description": "ببغاء أفريقي رمادي يتكلم ويحاكي الأصوات بشكل مذهل. عمره سنة ونصف، تم تدريبه على أكثر من 50 كلمة عربية.",
+    "date": "2025-04-20",
+    "animal": "bird",
+    "branch": "animals"
+  },
+  {
+    "id": "p004",
+    "image": "https://images.unsplash.com/photo-1520302630591-fd1f1b0f9b19?w=600&q=80",
+    "name": "سمك ذهبي زينة",
+    "price": 500,
+    "promotion_price": "",
+    "description": "سمك ذهبي للزينة، متعدد الألوان، مناسب للحوض المنزلي. يأتي مع كيس أكسجين لضمان وصوله بأمان.",
+    "date": "2025-05-28",
+    "animal": "fish",
+    "branch": "animals"
+  },
+  {
+    "id": "p005",
+    "image": "https://images.unsplash.com/photo-1548767797-d8c844163c4c?w=600&q=80",
+    "name": "أرنب قزم هولندي",
+    "price": 3500,
+    "promotion_price": 3000,
+    "description": "أرنب قزم هولندي صغير الحجم ومحبوب جدًا. مناسب للأطفال وسهل التربية. لونه أبيض وأسود وله شخصية هادئة وودودة.",
+    "date": "2025-05-20",
+    "animal": "rabbit",
+    "branch": "animals"
+  },
+  {
+    "id": "p006",
+    "image": "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=600&q=80",
+    "name": "طعام كلاب رويال كانين",
+    "price": 3200,
+    "promotion_price": 2800,
+    "description": "علف عالي الجودة للكلاب من شركة رويال كانين، يحتوي على جميع العناصر الغذائية الضرورية لنمو صحي. وزن العبوة 4 كيلوغرام، مناسب لجميع أعمار الكلاب.",
+    "date": "2025-04-15",
+    "animal": "dog",
+    "branch": "food"
+  },
+  {
+    "id": "p007",
+    "image": "https://images.unsplash.com/photo-1545249390-6bdfa286032f?w=600&q=80",
+    "name": "طعام قطط ويسكاس",
+    "price": 850,
+    "promotion_price": "",
+    "description": "علف ويسكاس الشهير للقطط، بنكهة السمك والدجاج. حبيبات صغيرة مناسبة لجميع فئات القطط. يحسن صحة الشعر ويقوي جهاز المناعة.",
+    "date": "2025-05-01",
+    "animal": "cat",
+    "branch": "food"
+  },
+  {
+    "id": "p008",
+    "image": "https://images.unsplash.com/photo-1489466280716-9408d4ad0e78?w=600&q=80",
+    "name": "طعام الطيور المتنوع",
+    "price": 600,
+    "promotion_price": 500,
+    "description": "خليط متوازن من البذور والحبوب المناسبة لمختلف أنواع الطيور. يحتوي على بذر الدوار وبذر السمسم والذرة والقمح. عبوة 2 كيلوغرام.",
+    "date": "2025-03-10",
+    "animal": "bird",
+    "branch": "food"
+  },
+  {
+    "id": "p009",
+    "image": "https://images.unsplash.com/photo-1508672019048-805c876b67e2?w=600&q=80",
+    "name": "طعام أسماك تيترامين",
+    "price": 750,
+    "promotion_price": "",
+    "description": "طعام أسماك الزينة تيترامين، رقائق متوازنة غنية بالبروتينات والفيتامينات. يعزز الألوان ويقوي مناعة الأسماك. عبوة 200 غرام.",
+    "date": "2025-05-22",
+    "animal": "fish",
+    "branch": "food"
+  },
+  {
+    "id": "p010",
+    "image": "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=600&q=80",
+    "name": "طوق مزخرف للقطط",
+    "price": 450,
+    "promotion_price": 350,
+    "description": "طوق أنيق ومريح للقطط مصنوع من الجلد الطبيعي، يأتي مع جرس صغير ولوحة اسم. متوفر بعدة ألوان.",
+    "date": "2025-05-26",
+    "animal": "cat",
+    "branch": "accessories"
+  },
+  {
+    "id": "p011",
+    "image": "https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=600&q=80",
+    "name": "مقود وحزام للكلاب",
+    "price": 1200,
+    "promotion_price": "",
+    "description": "مقود متين وحزام قابل للتعديل للكلاب، مصنوع من النايلون المتين. يأتي في مجموعة كاملة مع مقود طوله 1.5 متر.",
+    "date": "2025-05-03",
+    "animal": "dog",
+    "branch": "accessories"
+  },
+  {
+    "id": "p012",
+    "image": "https://images.unsplash.com/photo-1548199268-20b2948cf6ee?w=600&q=80",
+    "name": "قفص طيور فاخر",
+    "price": 4500,
+    "promotion_price": 4000,
+    "description": "قفص معدني فاخر للطيور يتسع لزوج من الطيور المتوسطة الحجم. مزود بمغذيات وأعشاب ومتنقل بعجلات. أبعاده 60×40×80 سم.",
+    "date": "2025-04-08",
+    "animal": "bird",
+    "branch": "accessories"
+  },
+  {
+    "id": "p013",
+    "image": "https://images.unsplash.com/photo-1534361960057-19f4434a5fef?w=600&q=80",
+    "name": "سرير قطط فاخر",
+    "price": 1800,
+    "promotion_price": 1500,
+    "description": "سرير دافئ ومريح للقطط مصنوع من القطيفة عالية الجودة. قابل للغسيل في الغسالة. متوفر بحجمين: صغير ومتوسط.",
+    "date": "2025-05-27",
+    "animal": "cat",
+    "branch": "accessories"
+  },
+  {
+    "id": "p014",
+    "image": "https://images.unsplash.com/photo-1545249390-6bdfa286032f?w=600&q=80",
+    "name": "لعبة عصا وريشة للقطط",
+    "price": 350,
+    "promotion_price": "",
+    "description": "لعبة تفاعلية للقطط تتمثل في عصا مرنة بريشة ملونة وأجراس صغيرة. تحفز غريزة الصيد وتبقي قطتك نشطة.",
+    "date": "2025-03-20",
+    "animal": "cat",
+    "branch": "accessories"
+  },
+  {
+    "id": "p015",
+    "image": "https://images.unsplash.com/photo-1568640347023-a616a30bc3bd?w=600&q=80",
+    "name": "حوض أسماك زجاجي",
+    "price": 5500,
+    "promotion_price": 5000,
+    "description": "حوض أسماك زجاجي فاخر سعة 60 لتر، يأتي مع مضخة هواء وفلتر وإضاءة LED ملونة. مثالي للزينة المنزلية.",
+    "date": "2025-05-15",
+    "animal": "fish",
+    "branch": "accessories"
+  },
+  {
+    "id": "p016",
+    "image": "https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=600&q=80",
+    "name": "كلب ألماني نبيل",
+    "price": 30000,
+    "promotion_price": "",
+    "description": "كلب ألماني أصيل من سلالة نبيلة، عمره 5 أشهر. تم تدريبه على الأوامر الأساسية، لقاحاته كاملة. مناسب للحراسة والرفقة.",
+    "date": "2025-05-05",
+    "animal": "dog",
+    "branch": "animals"
+  },
+  {
+    "id": "p017",
+    "image": "https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=600&q=80",
+    "name": "حمام الزينة الروماني",
+    "price": 2500,
+    "promotion_price": 2000,
+    "description": "طائر حمام روماني فاخر، أبيض اللون وضخم الجثة. مثالي للهواة وهواء الطلق. يحب التحليق ويعود للبيت.",
+    "date": "2025-05-18",
+    "animal": "bird",
+    "branch": "animals"
+  },
+  {
+    "id": "p018",
+    "image": "https://images.unsplash.com/photo-1548767797-d8c844163c4c?w=600&q=80",
+    "name": "أرنب عنكوري فلافي",
+    "price": 4500,
+    "promotion_price": "",
+    "description": "أرنب عنكوري فلافي بشعر طويل وناعم كالحرير. لونه رمادي فاتح وشخصيته هادئة. يحتاج تمشيط منتظم.",
+    "date": "2025-04-25",
+    "animal": "rabbit",
+    "branch": "animals"
+  },
+  {
+    "id": "p019",
+    "image": "https://images.unsplash.com/photo-1519052537078-e6302a4968d4?w=600&q=80",
+    "name": "علف قطط رويال كانين فيلين",
+    "price": 2200,
+    "promotion_price": 1900,
+    "description": "علف رويال كانين مخصص للقطط البالغة، غني بالبروتينات ومنخفض الكربوهيدرات. يدعم صحة الكلى والقلب. عبوة 2 كيلوغرام.",
+    "date": "2025-04-10",
+    "animal": "cat",
+    "branch": "food"
+  },
+  {
+    "id": "p020",
+    "image": "https://images.unsplash.com/photo-1512237798647-84b57b22b517?w=600&q=80",
+    "name": "شامبو كلاب بالألوة",
+    "price": 950,
+    "promotion_price": "",
+    "description": "شامبو طبيعي للكلاب يحتوي على مستخلص الألوة فيرا. يرطب ويلمع الشعر ويقضي على البراغيث. مناسب للاستخدام الأسبوعي.",
+    "date": "2025-05-29",
+    "animal": "dog",
+    "branch": "accessories"
+  }
+]

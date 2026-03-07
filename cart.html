@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>سلة التسوق - Pet's Corner</title>
+  <meta name="description" content="سلة التسوق - متجر Pet's Corner لحيوانات الأليفة">
+  <meta name="robots" content="noindex">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='16' fill='%23FCCF1B'/><text y='22' x='16' text-anchor='middle' font-size='20' font-weight='bold' fill='%231a1a2e' font-family='sans-serif'>P</text></svg>">
+</head>
+
+<body>
+
+<!-- ===== PAGE LOADER ===== -->
+<div id="page-loader" role="status">
+  <div class="loader-inner">
+    <span class="material-icons loader-paw">pets</span>
+    <div class="loader-text">Pet's Corner</div>
+  </div>
+</div>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar" role="navigation">
+  <div class="container">
+    <a href="index.html" class="nav-logo" aria-label="الصفحة الرئيسية">
+      <div class="logo-icon"><span class="material-icons" style="font-size:26px">pets</span></div>
+      <div class="logo-text">
+        <span class="logo-name">Pet's Corner</span>
+        <span class="logo-tagline">متجر حيوانات الأليفة</span>
+      </div>
+    </a>
+    <div class="nav-search" role="search">
+      <input type="search" id="search-input" placeholder="ابحث عن منتج..." autocomplete="off" aria-label="البحث">
+      <span class="material-icons search-icon">search</span>
+      <div class="search-results" id="search-results"></div>
+    </div>
+    <div class="nav-actions">
+      <button class="nav-btn" id="search-toggle" aria-label="بحث" style="display:none">
+        <span class="material-icons">search</span>
+      </button>
+      <button class="nav-btn" id="contact-btn" aria-label="اتصل بنا">
+        <span class="material-icons">headset_mic</span>
+      </button>
+      <button class="nav-btn active" style="background:var(--primary);color:var(--dark)" aria-label="سلة التسوق">
+        <span class="material-icons">shopping_bag</span>
+        <span class="cart-count hidden" id="cart-count">0</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== MAIN ===== -->
+<main>
+  <div class="cart-page">
+    <div class="container">
+      
+      <!-- Page Header -->
+      <div class="cart-page-header">
+        <nav class="breadcrumb" style="margin-bottom:12px">
+          <a href="index.html">الرئيسية</a>
+          <span class="sep material-icons" style="font-size:16px">chevron_left</span>
+          <span>سلة التسوق</span>
+        </nav>
+        <h1><span class="material-icons" style="font-size:30px;vertical-align:middle;margin-left:8px">shopping_cart</span> سلة التسوق</h1>
+      </div>
+
+      <!-- Cart Layout -->
+      <div class="cart-layout" id="cart-layout">
+        <!-- Populated by JS -->
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<!-- ===== ORDER MODAL ===== -->
+<div class="modal-overlay" id="order-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal">
+    
+    <div class="modal-header">
+      <h2 id="modal-title"><span class="material-icons" style="font-size:24px;vertical-align:middle;margin-left:8px;color:var(--primary)">inventory_2</span> تأكيد الطلب</h2>
+      <button class="modal-close" id="modal-close" aria-label="إغلاق">
+        <span class="material-icons">close</span>
+      </button>
+    </div>
+
+    <div class="modal-body" id="modal-body">
+      <!-- Order Form -->
+      <div id="order-form-container">
+        
+        <!-- Full Name -->
+        <div class="form-group">
+          <label class="form-label" for="full-name">
+            <span>*</span> الاسم الكامل
+          </label>
+          <input type="text" id="full-name" class="form-input" placeholder="أدخل اسمك الكامل" autocomplete="name" required>
+          <div class="form-error" id="name-error">الرجاء إدخال الاسم الكامل</div>
+        </div>
+
+        <!-- Phone -->
+        <div class="form-group">
+          <label class="form-label" for="phone">
+            <span>*</span> رقم الهاتف
+          </label>
+          <input type="tel" id="phone" class="form-input" placeholder="05XX XX XX XX" autocomplete="tel" required>
+          <div class="form-error" id="phone-error">الرجاء إدخال رقم هاتف صحيح</div>
+        </div>
+
+        <!-- State -->
+        <div class="form-group">
+          <label class="form-label" for="state-select">
+            <span>*</span> الولاية
+          </label>
+          <select id="state-select" class="form-select" required>
+            <option value="">اختر الولاية...</option>
+          </select>
+          <div class="form-error" id="state-error">الرجاء اختيار الولاية</div>
+        </div>
+
+        <!-- City -->
+        <div class="form-group">
+          <label class="form-label" for="city-select">
+            <span>*</span> البلدية
+          </label>
+          <select id="city-select" class="form-select" required disabled>
+            <option value="">اختر البلدية...</option>
+          </select>
+          <div class="form-error" id="city-error">الرجاء اختيار البلدية</div>
+        </div>
+
+        <!-- Address Notes -->
+        <div class="form-group">
+          <label class="form-label" for="address-notes">ملاحظات العنوان (اختياري)</label>
+          <input type="text" id="address-notes" class="form-input" placeholder="حي، شارع، رقم المنزل...">
+        </div>
+
+        <!-- Order Totals -->
+        <div class="order-totals">
+          <div class="row">
+            <span>المجموع الفرعي</span>
+            <span id="modal-subtotal">0 دج</span>
+          </div>
+          <div class="row">
+            <span>سعر التوصيل</span>
+            <span id="modal-delivery" style="color:var(--text-muted)">اختر الولاية</span>
+          </div>
+          <div class="row total">
+            <span>المجموع الكلي</span>
+            <span id="modal-total">—</span>
+          </div>
+        </div>
+
+        <!-- Confirm Button -->
+        <button class="btn-confirm" id="confirm-btn" onclick="confirmOrder()">
+          <span class="material-icons">check_circle</span>
+          تأكيد الطلب
+        </button>
+
+        <p style="text-align:center;font-size:12px;color:var(--text-muted);margin-top:12px">
+          بالنقر على تأكيد الطلب، أنت توافق على شروط الخدمة
+        </p>
+      </div>
+
+      <!-- Order Success (hidden initially) -->
+      <div id="order-success" class="order-success" style="display:none">
+        <div class="success-checkmark"><span class="material-icons" style="font-size:40px">check</span></div>
+        <h3>تم استلام طلبك بنجاح!</h3>
+        <p>سيتواصل معك فريقنا قريباً لتأكيد الطلب والتوصيل.</p>
+        <br>
+        <button class="btn-primary" onclick="closeModal(); window.location.href='index.html'">
+          <span class="material-icons">store</span>
+          العودة للتسوق
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer id="footer" role="contentinfo">
+  <div class="footer-content">
+    <div class="container">
+      <div class="footer-bottom" style="border-top:none;padding:30px 0">
+        <p>جميع الحقوق محفوظة لمتجر Pet's Corner 2026 &copy;</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button class="scroll-top" id="scroll-top" aria-label="العودة للأعلى">
+  <span class="material-icons">expand_less</span>
+</button>
+
+<!-- EmailJS SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<script src="js/cart.js"></script>
+<script>
+'use strict';
+
+// ===== EmailJS Config =====
+// Replace these with your actual EmailJS credentials
+const EMAILJS_SERVICE_ID = 'service_XXXXXXX';
+const EMAILJS_TEMPLATE_ID = 'template_XXXXXXX';
+const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
+
+let statesData = [];
+let selectedDeliveryPrice = 0;
+
+// ===== Init =====
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    const loader = document.getElementById('page-loader');
+    if (loader) loader.classList.add('hidden');
+  }, 600);
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  initNavbar();
+  renderCart();
+  loadStates();
+  initModal();
+  initScrollTop();
+
+  // Init EmailJS
+  if (typeof emailjs !== 'undefined') {
+    emailjs.init(EMAILJS_PUBLIC_KEY);
+  }
+});
+
+function initNavbar() {
+  const navbar = document.querySelector('.navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 50);
+  }, { passive: true });
+
+  document.getElementById('contact-btn')?.addEventListener('click', () => {
+    document.getElementById('footer')?.scrollIntoView({ behavior: 'smooth' });
+  });
+
+  if (window.innerWidth <= 768) {
+    const st = document.getElementById('search-toggle');
+    if (st) st.style.display = 'flex';
+    st?.addEventListener('click', () => {
+      document.querySelector('.nav-search')?.classList.toggle('mobile-show');
+    });
+  }
+
+  Cart.updateCartUI();
+}
+
+// ===== Render Cart =====
+function renderCart() {
+  const layout = document.getElementById('cart-layout');
+  const items = Cart.get();
+  Cart.updateCartUI();
+
+  if (items.length === 0) {
+    layout.innerHTML = `
+      <div class="empty-cart" style="grid-column:1/-1">
+        <div class="empty-cart-icon"><span class="material-icons" style="font-size:80px;color:var(--gray-light)">shopping_cart</span></div>
+        <h2>سلة التسوق فارغة</h2>
+        <p>لم تضف أي منتجات بعد. ابدأ التسوق الآن!</p>
+        <button class="btn-shop" onclick="window.location.href='index.html'">
+          <span class="material-icons">store</span>
+          تصفح المنتجات
+        </button>
+      </div>`;
+    return;
+  }
+
+  const subtotal = Cart.subtotal();
+
+  layout.innerHTML = `
+    <!-- Items -->
+    <div class="cart-items-list" id="cart-items-list">
+      ${items.map(item => createCartItem(item)).join('')}
+    </div>
+
+    <!-- Summary -->
+    <div class="order-summary">
+      <h2>ملخص الطلب</h2>
+      
+      <div class="summary-row">
+        <span>عدد المنتجات</span>
+        <span>${Cart.count()} عنصر</span>
+      </div>
+      <div class="summary-row">
+        <span>المجموع الفرعي</span>
+        <span>${formatPrice(subtotal)} دج</span>
+      </div>
+      <div class="summary-row delivery">
+        <span>سعر التوصيل</span>
+        <span class="delivery-price" id="summary-delivery">يحدد عند الطلب</span>
+      </div>
+      <div class="summary-row total">
+        <span>المجموع الكلي</span>
+        <span id="summary-total">${formatPrice(subtotal)} دج</span>
+      </div>
+
+      <button class="btn-order" onclick="openOrderModal()">
+        <span class="material-icons">local_shipping</span>
+        اطلب الآن
+      </button>
+      <button class="btn-continue" onclick="window.location.href='index.html'">
+        <span class="material-icons">arrow_forward</span>
+        متابعة التسوق
+      </button>
+
+      <div style="margin-top:16px;padding:12px;background:var(--light);border-radius:10px;font-size:12px;color:var(--text-muted);text-align:center">
+        <span class="material-icons" style="font-size:16px;vertical-align:middle;color:var(--success)">verified_user</span>
+        دفع آمن عند الاستلام
+      </div>
+    </div>`;
+}
+
+function createCartItem(item) {
+  return `
+    <div class="cart-item" id="item-${item.id}">
+      <img src="${item.image}" alt="${item.name}" loading="lazy">
+      <div class="cart-item-info">
+        <div class="name">${item.name}</div>
+        <div class="price">${formatPrice(item.price * item.qty)} <span>دج</span></div>
+        <div class="qty-controls">
+          <button class="qty-btn" onclick="changeQty('${item.id}', ${item.qty - 1})" aria-label="تقليل">−</button>
+          <span class="qty-value">${item.qty}</span>
+          <button class="qty-btn" onclick="changeQty('${item.id}', ${item.qty + 1})" aria-label="زيادة">+</button>
+          <span style="font-size:12px;color:var(--text-muted);margin-right:6px">${formatPrice(item.price)} دج/وحدة</span>
+        </div>
+      </div>
+      <button class="btn-remove-item" onclick="removeItem('${item.id}')" aria-label="حذف">
+        <span class="material-icons">delete_outline</span>
+      </button>
+    </div>`;
+}
+
+function changeQty(id, newQty) {
+  Cart.updateQty(id, newQty);
+  renderCart();
+}
+
+function removeItem(id) {
+  const el = document.getElementById(`item-${id}`);
+  if (el) {
+    el.style.opacity = '0';
+    el.style.transform = 'translateX(20px)';
+    el.style.transition = 'all 0.3s';
+    setTimeout(() => {
+      Cart.remove(id);
+      renderCart();
+    }, 300);
+  } else {
+    Cart.remove(id);
+    renderCart();
+  }
+}
+
+function formatPrice(n) {
+  return Number(n).toLocaleString('ar-DZ');
+}
+
+// ===== Load States =====
+async function loadStates() {
+  try {
+    const res = await fetch('data/states.json');
+    statesData = await res.json();
+
+    const stateSelect = document.getElementById('state-select');
+    if (!stateSelect) return;
+
+    statesData.forEach(state => {
+      const opt = document.createElement('option');
+      opt.value = state.id;
+      opt.textContent = `${state.id}. ${state.statename}`;
+      opt.dataset.price = state.deliveryprice;
+      stateSelect.appendChild(opt);
+    });
+
+    stateSelect.addEventListener('change', onStateChange);
+  } catch (err) {
+    console.error('Failed to load states:', err);
+  }
+}
+
+function onStateChange() {
+  const stateSelect = document.getElementById('state-select');
+  const citySelect = document.getElementById('city-select');
+  const selectedId = parseInt(stateSelect.value);
+
+  if (!selectedId) {
+    citySelect.disabled = true;
+    citySelect.innerHTML = '<option value="">اختر البلدية...</option>';
+    selectedDeliveryPrice = 0;
+    updateModalTotals();
+    return;
+  }
+
+  const state = statesData.find(s => s.id === selectedId);
+  if (!state) return;
+
+  selectedDeliveryPrice = state.deliveryprice;
+  updateModalTotals();
+
+  // Update delivery in summary
+  const summaryDelivery = document.getElementById('summary-delivery');
+  if (summaryDelivery) {
+    summaryDelivery.textContent = `${formatPrice(state.deliveryprice)} دج`;
+    summaryDelivery.style.color = state.deliveryprice === 0 ? 'var(--success)' : 'var(--text)';
+  }
+
+  const summaryTotal = document.getElementById('summary-total');
+  if (summaryTotal) {
+    summaryTotal.textContent = `${formatPrice(Cart.subtotal() + state.deliveryprice)} دج`;
+  }
+
+  // Populate cities
+  citySelect.disabled = false;
+  citySelect.innerHTML = '<option value="">اختر البلدية...</option>';
+  state.cities.forEach(city => {
+    const opt = document.createElement('option');
+    opt.value = city;
+    opt.textContent = city;
+    citySelect.appendChild(opt);
+  });
+}
+
+function updateModalTotals() {
+  const subtotal = Cart.subtotal();
+  const total = subtotal + selectedDeliveryPrice;
+
+  const modalSubtotal = document.getElementById('modal-subtotal');
+  const modalDelivery = document.getElementById('modal-delivery');
+  const modalTotal = document.getElementById('modal-total');
+
+  if (modalSubtotal) modalSubtotal.textContent = `${formatPrice(subtotal)} دج`;
+  if (modalDelivery) {
+    if (selectedDeliveryPrice > 0) {
+      modalDelivery.textContent = `${formatPrice(selectedDeliveryPrice)} دج`;
+      modalDelivery.style.color = 'var(--text)';
+    } else {
+      modalDelivery.textContent = 'مجاني';
+      modalDelivery.style.color = 'var(--success)';
+    }
+  }
+  if (modalTotal) modalTotal.textContent = `${formatPrice(total)} دج`;
+}
+
+// ===== Modal =====
+function initModal() {
+  const overlay = document.getElementById('order-modal');
+  const closeBtn = document.getElementById('modal-close');
+
+  closeBtn?.addEventListener('click', closeModal);
+  overlay?.addEventListener('click', (e) => {
+    if (e.target === overlay) closeModal();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+  });
+}
+
+function openOrderModal() {
+  if (Cart.get().length === 0) return;
+  
+  const modal = document.getElementById('order-modal');
+  modal.classList.add('show');
+  document.body.style.overflow = 'hidden';
+
+  updateModalTotals();
+
+  // Reset to form view
+  document.getElementById('order-form-container').style.display = 'block';
+  document.getElementById('order-success').style.display = 'none';
+}
+
+function closeModal() {
+  const modal = document.getElementById('order-modal');
+  modal.classList.remove('show');
+  document.body.style.overflow = '';
+}
+
+window.openOrderModal = openOrderModal;
+window.closeModal = closeModal;
+window.changeQty = changeQty;
+window.removeItem = removeItem;
+
+// ===== Form Validation =====
+function validateForm() {
+  let valid = true;
+
+  const name = document.getElementById('full-name');
+  const nameErr = document.getElementById('name-error');
+  if (!name.value.trim() || name.value.trim().length < 3) {
+    name.classList.add('error');
+    nameErr.classList.add('show');
+    valid = false;
+  } else {
+    name.classList.remove('error');
+    nameErr.classList.remove('show');
+  }
+
+  const phone = document.getElementById('phone');
+  const phoneErr = document.getElementById('phone-error');
+  const phoneRegex = /^(05|06|07)[0-9]{8}$/;
+  if (!phoneRegex.test(phone.value.trim())) {
+    phone.classList.add('error');
+    phoneErr.classList.add('show');
+    valid = false;
+  } else {
+    phone.classList.remove('error');
+    phoneErr.classList.remove('show');
+  }
+
+  const state = document.getElementById('state-select');
+  const stateErr = document.getElementById('state-error');
+  if (!state.value) {
+    state.classList.add('error');
+    stateErr.classList.add('show');
+    valid = false;
+  } else {
+    state.classList.remove('error');
+    stateErr.classList.remove('show');
+  }
+
+  const city = document.getElementById('city-select');
+  const cityErr = document.getElementById('city-error');
+  if (!city.value) {
+    city.classList.add('error');
+    cityErr.classList.add('show');
+    valid = false;
+  } else {
+    city.classList.remove('error');
+    cityErr.classList.remove('show');
+  }
+
+  return valid;
+}
+
+// ===== Confirm Order =====
+async function confirmOrder() {
+  if (!validateForm()) return;
+
+  const btn = document.getElementById('confirm-btn');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="material-icons" style="animation:spin 1s linear infinite">refresh</span> جاري الإرسال...';
+
+  // Gather order data
+  const cartItems = Cart.get();
+  const name = document.getElementById('full-name').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  const stateSelect = document.getElementById('state-select');
+  const stateName = stateSelect.options[stateSelect.selectedIndex]?.text || '';
+  const city = document.getElementById('city-select').value;
+  const notes = document.getElementById('address-notes').value.trim();
+  const subtotal = Cart.subtotal();
+  const total = subtotal + selectedDeliveryPrice;
+
+  // Format items for email
+  const itemsList = cartItems.map(i => 
+    `• ${i.name} × ${i.qty} = ${formatPrice(i.price * i.qty)} دج`
+  ).join('\n');
+
+  const templateParams = {
+    to_name: 'Pet\'s Corner',
+    customer_name: name,
+    customer_phone: phone,
+    customer_state: stateName,
+    customer_city: city,
+    customer_address: notes || '—',
+    order_items: itemsList,
+    order_subtotal: `${formatPrice(subtotal)} دج`,
+    delivery_price: `${formatPrice(selectedDeliveryPrice)} دج`,
+    order_total: `${formatPrice(total)} دج`,
+    order_date: new Date().toLocaleDateString('ar-DZ')
+  };
+
+  try {
+    // Send via EmailJS if configured
+    if (typeof emailjs !== 'undefined' && EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
+      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
+    } else {
+      // Demo mode: simulate sending
+      await new Promise(resolve => setTimeout(resolve, 1500));
+    }
+
+    // Success
+    Cart.clear();
+    document.getElementById('order-form-container').style.display = 'none';
+    document.getElementById('order-success').style.display = 'block';
+
+  } catch (err) {
+    console.error('Order failed:', err);
+    btn.disabled = false;
+    btn.innerHTML = '<span class="material-icons">check_circle</span> تأكيد الطلب';
+    showToast('حدث خطأ، يرجى المحاولة مرة أخرى', 'error');
+  }
+}
+
+window.confirmOrder = confirmOrder;
+
+// ===== Toast =====
+function showToast(msg, type = '') {
+  let toast = document.getElementById('toast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'toast';
+    toast.className = 'toast';
+    document.body.appendChild(toast);
+  }
+  toast.textContent = msg;
+  toast.className = `toast ${type} show`;
+  clearTimeout(toast._timer);
+  toast._timer = setTimeout(() => toast.classList.remove('show'), 3000);
+}
+
+function initScrollTop() {
+  const btn = document.getElementById('scroll-top');
+  if (!btn) return;
+  window.addEventListener('scroll', () => btn.classList.toggle('show', window.scrollY > 400), { passive: true });
+  btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+}
+
+// Add spin animation
+const style = document.createElement('style');
+style.textContent = '@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }';
+document.head.appendChild(style);
+</script>
+
+</body>
+</html>
