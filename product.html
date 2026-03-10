@@ -18,7 +18,7 @@
 <!-- ===== PAGE LOADER ===== -->
 <div id="page-loader" role="status" aria-label="جاري التحميل">
   <div class="loader-inner">
-        <img class="material-icons loader-paw" src="logo.svg" alt="">
+        <img class="material-icons loader-paw" src="./assets/logo.svg" alt="">
     <div class="loader-text">Pet's Corner</div>
   </div>
 </div>
@@ -27,7 +27,7 @@
 <nav class="navbar" role="navigation" aria-label="القائمة الرئيسية">
   <div class="container">
     <a href="index.html" class="nav-logo" aria-label="الصفحة الرئيسية">
-      <div class="logo-icon"><img class="material-icons " src="logo.svg" alt=""></div>
+      <div class="logo-icon"><img class="material-icons " src="./assets/logo.svg" alt=""></div>
       <div class="logo-text">
         <span class="logo-name">Pet's Corner</span>
         <span class="logo-tagline">متجر حيوانات الأليفة</span>
@@ -250,6 +250,7 @@ function renderProduct(p) {
 
       <div class="product-desc">
         <p>${p.description}</p>
+        <p>  متوفر  ${p.type.join(" | ")}</p>
       </div>
 
       <div class="product-actions">

@@ -1,14 +1,15 @@
+
 [
   {
     "id": "p001",
-    "image": "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=600&q=80",
+    "image": "./assets/logo.svg",
     "name": "قطة فارسية أصيلة",
     "price": 15000,
     "promotion_price": 12000,
     "description": "قطة فارسية من سلالة أصيلة، عمرها 3 أشهر، ملقحة وبصحة ممتازة. لونها أبيض ناصع وشعرها طويل وكثيف. تم تربيتها في بيئة منزلية نظيفة مع جميع التطعيمات اللازمة.",
     "date": "2025-01-25",
     "animal": "cat",
-    "branch": "animals"
+    "branch": "animals" 
   },
   {
     "id": "p002",

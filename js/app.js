@@ -352,12 +352,12 @@ function initBranchFilter() {
 // ===== Animals Hero Buttons =====
 function initHeroAnimals() {
   const animals = [
-    { id:'cat',     name:'قطط',    img:'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=300&q=80' },
-    { id:'dog',     name:'كلاب',   img:'https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=300&q=80' },
-    { id:'bird',    name:'طيور',   img:'https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=300&q=80' },
-    { id:'fish',    name:'أسماك',  img:'https://images.unsplash.com/photo-1520302630591-fd1f1b0f9b19?w=300&q=80' },
-    { id:'rabbit',  name:'أرانب',  img:'https://images.unsplash.com/photo-1548767797-d8c844163c4c?w=300&q=80' },
-    { id:'hamster', name:'هامستر', img:'https://images.unsplash.com/photo-1548199268-20b2948cf6ee?w=300&q=80' },
+    { id:'cat',     name:'قطط',    img:'./assets/cat.webp' },
+    { id:'dog',     name:'كلاب',   img:'./assets/dog.webp' },
+    { id:'bird',    name:'طيور',   img:'./assets/bird.webp' },
+    { id:'fish',    name:'أسماك',  img:'./assets/fish.webp' },
+    { id:'rabbit',  name:'أرانب',  img:'./assets/rab.webp' },
+    { id:'hamster', name:'هامستر', img:'./assets/hamster.webp' },
   ];
   const track = document.getElementById('animals-track');
   if (!track) return;
